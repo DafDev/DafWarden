@@ -2,9 +2,9 @@
 
 namespace DafWarden.Infrastructure;
 
-public class PasswordFragmentRepository : IPasswordFragementRepository
+public class PasswordFragmentRepository : IPassphraseFragementRepository
 {
-    public Task<string> GetPasswordFragment(int FragementId)
+    public Task<string> GetPassphraseFragment(int FragementId)
     {
         throw new NotImplementedException();
     }
