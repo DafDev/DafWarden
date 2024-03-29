@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DafWarden.Domain\DafWarden.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
