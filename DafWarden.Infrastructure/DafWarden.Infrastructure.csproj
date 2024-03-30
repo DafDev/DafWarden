@@ -10,4 +10,10 @@
     <ProjectReference Include="..\DafWarden.Domain\DafWarden.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="diceware.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

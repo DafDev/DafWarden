@@ -6,7 +6,7 @@ public class Executor(IPassphraseGenerator passphraseGenerator)
 {
     private readonly IPassphraseGenerator _passphraseGenerator = passphraseGenerator;
 
-    public async Task Execute()
+    public void Execute()
     {
         Console.WriteLine("Enter passphrase length as a number.");
         var passphraseLengthString = Console.ReadLine();
@@ -17,10 +17,10 @@ public class Executor(IPassphraseGenerator passphraseGenerator)
         }
 
         int passphraseLength  = int.Parse(passphraseLengthString);
-        var passwordPhraseResult = await _passphraseGenerator.Generate(passphraseLength);
-        if (passwordPhraseResult.IsSuccess) 
+        var passwordPhraseResult = _passphraseGenerator.Generate(passphraseLength);
+        if (passwordPhraseResult.IsSuccess)
             Console.WriteLine(passwordPhraseResult.Value);
         else
-            Console.WriteLine("Sorry there was an issue, please try again.")
+            Console.WriteLine("Sorry there was an issue, please try again.");
     }
 }

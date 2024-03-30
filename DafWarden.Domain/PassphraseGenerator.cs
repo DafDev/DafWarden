@@ -10,7 +10,7 @@ public class PassphraseGenerator(IPassphraseFragementRepository repository) : IP
     private const int _maxNulmberOfThrows = 5;
     private readonly Random _random = new();
 
-    public async Task<Result<string>> Generate(int passwordLength)
+    public Result<string> Generate(int passwordLength)
     {
         if (passwordLength <= 0) 
             return Result.Fail<string>(new PassphraseEmptyError());
@@ -18,7 +18,7 @@ public class PassphraseGenerator(IPassphraseFragementRepository repository) : IP
         for (int i = 0; i < passwordLength; i++)
         {
             var fragmentId = GenerateFragmenId();
-            passphraseFragments.Add(await _repository.GetPassphraseFragment(fragmentId));
+            passphraseFragments.Add(_repository.GetPassphraseFragment(fragmentId));
         }
         return Result.Ok(string.Join(" ", passphraseFragments));
     }

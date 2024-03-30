@@ -18,14 +18,14 @@ public class DomainTests
     }
 
     [Fact]
-    public async Task GivenLengthGreaterThanZeroWhenGenerateShouldReturnPaswordWithNWords()
+    public void GivenLengthGreaterThanZeroWhenGenerateShouldReturnPaswordWithNWords()
     {
         // Given
         var expected = "ciao ciao";
         var demandedLength = 2;
 
         // When
-        var actual = await _sut.Generate(demandedLength);
+        var actual = _sut.Generate(demandedLength);
 
         // Should
         actual.IsSuccess.Should().BeTrue();
@@ -33,15 +33,15 @@ public class DomainTests
     }
 
     [Fact]
-    public async Task GivenLengthZeroWhenGenerateShouldReturnFailedResult()
+    public void GivenLengthZeroWhenGenerateShouldReturnFailedResult()
     {
         // When
-        var actual = await _sut.Generate(0);
+        var actual = _sut.Generate(0);
 
         // Should
         actual.IsFailed.Should().BeTrue();
         actual.HasError(error => error.GetType() == typeof(PassphraseEmptyError)).Should().BeTrue();
     }
 
-    private void SetupRepository() => _repository.Setup(repo => repo.GetPassphraseFragment(It.IsAny<int>())).ReturnsAsync("ciao");
+    private void SetupRepository() => _repository.Setup(repo => repo.GetPassphraseFragment(It.IsAny<int>())).Returns("ciao");
 }
