@@ -24,7 +24,7 @@ public class Executor(IPassphraseGenerator passphraseGenerator)
             if (passwordPhraseResult.IsSuccess)
                 Console.WriteLine(passwordPhraseResult.Value);
             else
-                Console.WriteLine("Sorry there was an issue, please try again.");
+                passwordPhraseResult.Errors.ForEach(err => Console.WriteLine(err.Message));
 
             do
             {

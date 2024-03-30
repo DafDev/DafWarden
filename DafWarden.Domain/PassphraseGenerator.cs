@@ -7,7 +7,7 @@ namespace DafWarden.Domain;
 public class PassphraseGenerator(IPassphraseFragementRepository repository) : IPassphraseGenerator
 {
     private readonly IPassphraseFragementRepository _repository = repository;
-    private const int _maxNulmberOfThrows = 5;
+    private const int _maxNumberOfThrows = 5;
     private readonly Random _random = new();
 
     public Result<string> Generate(int passwordLength)
@@ -25,7 +25,7 @@ public class PassphraseGenerator(IPassphraseFragementRepository repository) : IP
     private int GenerateFragmenId()
     {
         List<int> diceThrowsList = [];
-        for (int i = 0; i < _maxNulmberOfThrows; i++)
+        for (int i = 0; i < _maxNumberOfThrows; i++)
             diceThrowsList.Add(_random.Next(1, 7)); // returns an integer between 1 and 6
 
         return int.Parse(string.Join(string.Empty, diceThrowsList));
