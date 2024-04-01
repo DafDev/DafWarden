@@ -10,4 +10,13 @@
     <ProjectReference Include="..\DafWarden.Domain\DafWarden.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\fragment.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\specialCharacters.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

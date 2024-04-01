@@ -1,5 +1,8 @@
-﻿namespace DafWarden.Domain.Adapters;
+﻿using FluentResults;
+
+namespace DafWarden.Domain.Adapters;
 public interface IPassphraseFragementRepository
 {
-    Task<string> GetPassphraseFragment(int FragementId);
+    Result<string> GetPassphraseFragment(int fragementId);
+    Result<string> GetRandomDigitOrSpecialCharacter(int specialCharacterId);
 }
