@@ -18,9 +18,15 @@ public class Executor(IPassphraseGenerator passphraseGenerator)
                 Console.WriteLine("This is not a number, please type a number for your passwordLength.");
                 passphraseLengthString = Console.ReadLine();
             }
-
+            string? addSpecialCharacter;
+            do
+            {
+                Console.WriteLine("Do you want to add as special character (y/n)");
+                addSpecialCharacter = Console.ReadLine();
+            }
+            while (addSpecialCharacter is not "y" and not "Y" and not "n" and not "n");
             int passphraseLength = int.Parse(passphraseLengthString);
-            var passwordPhraseResult = _passphraseGenerator.Generate(passphraseLength);
+            var passwordPhraseResult = _passphraseGenerator.Generate(passphraseLength, addSpecialCharacter.Equals("y", StringComparison.InvariantCultureIgnoreCase));
             if (passwordPhraseResult.IsSuccess)
                 Console.WriteLine(passwordPhraseResult.Value);
             else

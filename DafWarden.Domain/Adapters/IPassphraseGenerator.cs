@@ -4,5 +4,5 @@ namespace DafWarden.Domain.Adapters;
 
 public interface IPassphraseGenerator
 {
-    Result<string> Generate(int passwordLength);
+    Result<string> Generate(int passwordLength, bool addDigitOrSpecialCharacter = false);
 }
