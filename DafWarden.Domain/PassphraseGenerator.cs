@@ -18,7 +18,10 @@ public class PassphraseGenerator(IPassphraseFragementRepository repository) : IP
         for (int i = 0; i < passwordLength; i++)
         {
             var fragmentId = GenerateFragmenId();
-            passphraseFragments.Add(_repository.GetPassphraseFragment(fragmentId));
+            var passphraseFragment = _repository.GetPassphraseFragment(fragmentId);
+            if (passphraseFragment.IsFailed)
+                return Result.Fail<string>("fragment not found");
+            passphraseFragments.Add(passphraseFragment.Value);
         }
         return Result.Ok(string.Join(" ", passphraseFragments));
     }

@@ -1,4 +1,6 @@
 ﻿using DafWarden.Domain.Adapters;
+using DafWarden.Infrastructure.Errors;
+using FluentResults;
 using System.Reflection;
 
 namespace DafWarden.Infrastructure;
@@ -16,7 +18,10 @@ public class PassphraseFragmentRepository : IPassphraseFragementRepository
             .ToDictionary(line => int.Parse(line[0]), line => line[1]);
     }
 
-    public string  GetPassphraseFragment(int FragementId) => _inMemoryFragments[FragementId];
+    public Result<string> GetPassphraseFragment(int fragementId) 
+        => _inMemoryFragments.TryGetValue(fragementId, out var fragment)
+            ? fragment
+            : Result.Fail<string>(new PassphraseFragmentNotFoundError(fragementId));
 }
 
 public record PassphraseFragement(int FragmentId, string Fragment);
